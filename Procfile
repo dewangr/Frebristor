@@ -1,0 +1,1 @@
+web: gunicorn frebristor:frebristor --reload --workers 2
