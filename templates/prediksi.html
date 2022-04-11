@@ -1,0 +1,389 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<head>
+
+    <title>Prediksi Penyakit</title>
+</head>
+<body style="background-image: url({{ url_for('static', filename='img/bg.jpg') }}); background-size:cover; background-position:center; height: 850px">
+    <div class="container container-lg ">
+        <div class="main-content mx-auto w-75 p-3">
+            <h5 class="text-center pt-lg-5 pt-md-4 pt-sm-4">Prediksi Penyakit Pasien</h5>
+            <form action="prediksiPx/" method="post">
+                <a class="ms-4 pxKlik" data-bs-toggle="collapse" href="#collapseidentitas" role="button" aria-expanded="true" aria-controls="collapseidentitas">
+                    <h6>Identitas Pasien:</h6>
+                </a>
+                <div class="show collapse ps-4 py-4 ms-3 identitas bg-white" id="collapseidentitas">
+                    <div class="row ">
+                        <div class="col-lg-6">
+                            <div class="row mb-md-2 mb-sm-3 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-4">
+                                    <label class="mt-2 form-label" for="rm">No RM</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-11 col-md-7">
+                                    <input type="text" placeholder="No Rekam Medis" class="form-control" maxlength="6" name="rm" id="rm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-4">
+                                    <label class="mt-md-2 form-label" for="lahir">Tanggal Lahir</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-11 col-md-7">
+                                    <input type="date" class="form-control w-100" max="2022-04-01" name="lahir" id="lahir">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="ms-4 pxKlik" data-bs-toggle="collapse" href="#collapsegejala" role="button" aria-expanded="true" aria-controls="collapsegejala">
+                    <h6>Gejala Pasien:</h6>
+                </a>
+                <div class="show collapse ps-4 py-3 ms-3 gejala-px bg-white" id="collapsegejala">
+                    <!-- new row  -->
+                    <div class="row pt-2 mb-lg-3 mb-md-2 md-sm-2">
+                        <div class="col-lg-6">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-4">
+                                    <label class="mt-2 form-label" for="demam">Demam</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-11 col-md-7">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Lama Demam" aria-describedby="basic-addon2" class="form-control" maxlength="2" name="demam" id="demam">
+                                        <span class="input-group-text" id="basic-addon2">hari</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-4">
+                                    <label class="mt-md-2 form-label" for="suhu">Suhu Tubuh</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-11 col-md-7">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Suhu Tubuh" aria-describedby="basic-addon" class="form-control" maxlength="2" name="suhu" id="suhu">
+                                        <span class="input-group-text" id="basic-addon">celcius</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <!-- new row  -->
+                    <div class="row mb-lg-2 mb-md-2 md-sm-2">
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-5 ">
+                                    <label class="mt-2 form-label" for="kes">Kesadaran</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-11 col-md-7  float-end">
+                                    <select id="kes" class="form-select " aria-label="Default select example">
+                                        <option value="">Pilih tingkat kesadaran:</option>
+                                        <option value="cm">Compos Metris</option>
+                                        <option value="apatis">Apatis</option>
+                                        <option value="delirium">Delirium</option>
+                                        <option value="somnolen">Somnolen</option>
+                                        <option value="sopor">Soporous</option>
+                                        <option value="psikosi">Psikosis</option>
+                                        <option value="semi-koma">Semi Koma</option>
+                                        <option value="koma">Koma</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-4 ">
+                                    <label class="mt-2 form-label" for="radioSembelit">Sembelit</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-8">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioSembelit" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioSembelit" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <!-- new row  -->
+                    <div class="row mb-lg-1 mb-md-2 md-sm-2">
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-4 ">
+                                    <label class="mt-2 form-label" for="radioMaMi">Nafsu Makan</label>
+                                </div>
+                                <div class="pt-md-3 pt-lg-2 pt-sm-1 col-lg-7 col-sm-12 col-md-8  ">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioMaMi" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Baik</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-2">
+                                        <input class="form-check-input" type="radio" name="radioMaMi" id="ra    dioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-3  ">
+                                    <label class="mt-2 form-label" for="radioDiare">Diare</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioDiare" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioDiare" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <!-- new row  -->
+                    <div class="row mb-lg-1 mb-md-2 md-sm-2">
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioPusing">Pusing</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioPusing" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioPusing" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioDiare">Perut Kembung</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioKembung" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioKembung" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <!-- new row  -->
+                    <div class="row mb-lg-1 mb-md-2 md-sm-2">
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioMual">Mual</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioMual" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioMual" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioNKepala">Nyeri Kepala</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNKepala" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNKepala" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <!-- new row  -->
+                    <div class="row mb-lg-1 mb-md-2 md-sm-2">
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioMuntah">Muntah</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioMuntah" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioMuntah" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioNOtot">Nyeri Otot</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNOtot" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNOtot" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <!-- new row  -->
+                    <div class="row mb-lg-1 mb-md-2 md-sm-2">
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioBatuk">Batuk</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioBatuk" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioBatuk" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioNSendi">Nyeri Sendi</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNSendi" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNSendi" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <!-- new row  -->
+                    <div class="row mb-lg-1 mb-md-2 md-sm-2">
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioBatuk">Mimisan</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioBatuk" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioBatuk" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioNRetro">N Retro Orbital</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-6 col-sm-12 col-md-9">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNRetro" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNRetro" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <!-- new row  -->
+                    <div class="row mb-lg-1 mb-md-2 md-sm-2">
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row mb-md-2 mb-sm-2 mb-lg-0">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioLidah">Lidah Kotor</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioLidah" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioLidah" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-3 ">
+                                    <label class="mt-2 form-label" for="radioNRetro">Ruam Kulit</label>
+                                </div>
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
+                                    <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioRuam" id="radioYa" value="1">
+                                        <label class="form-check-label" for="radioYa">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
+                                        <input class="form-check-input" type="radio" name="radioNRuam" id="radioTidak" value="0">
+                                        <label class="form-check-label" for="radioTidak">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <div class="pt-sm-2 ps-sm-3 d-grid gap-2 mt-lg-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-outline-warning me-md-1 px-3" type="reset">Reset</button>
+                    <button class="btn btn-warning" type="submit">Prediksi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}

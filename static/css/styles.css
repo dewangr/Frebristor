@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+.main-content {
+    margin-top: 50px;
+}
+
+.login-card {
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.applogo {
+    width: 200px;
+    height: 200px;
+}
+
+.container {
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar a {
+    color: black;
+}
+
+.navbar a:hover {
+    color: #06aa8a;
+}
+
+.menu-app a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#pred,
+#riwayat,
+#about {
+    background-color: rgba(254, 203, 63, 0.1);
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+#pred:hover {
+    color: #8c1515;
+    font-weight: 600;
+    padding: 8px 16px;
+    background-color: rgba(210, 36, 36, 0.1);
+    border-radius: 8px;
+}
+
+#riwayat:hover {
+    color: #0a821e;
+    font-weight: 600;
+    padding: 8px 16px;
+    background-color: rgba(25, 178, 69, 0.1);
+    border-radius: 8px;
+}
+
+#about:hover {
+    color: #13536f;
+    font-weight: 600;
+    padding: 8px 16px;
+    background-color: rgba(61, 163, 207, 0.1);
+    border-radius: 8px;
+}
+
+.welcome-text strong {
+    font-size: 20px;
+}
+
+.welcome-text p {
+    font-size: 15px;
+}
+
+.main-content>h5 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}

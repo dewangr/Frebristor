@@ -1,0 +1,49 @@
+{% extends 'navbar.html' %} {% block content%}
+
+<head>
+    <title>Frebristor</title>
+</head>
+
+<body>
+    <div id="beranda" class="dashboard container-fluid d-block p-5 text-center mt-5" style="background-image: url({{ url_for('static', filename='img/bgg.jpg')}}); background-repeat:no-repeat; background-size:cover; background-position:center; height: 700px">
+        <div class="container">
+            <div class="applogo my-4 row mx-auto">
+                <img src="{{ url_for('static', filename='img/fever.png') }}" alt="">
+                <caption>
+                    <h4>FREBISTOR APP</h4>
+                </caption>
+            </div>
+            <div class="row mt-4 mb-2 text-center welcome-text">
+                <div class="col"></div>
+                <div class="col-8">
+                    <p class="text-dark  text-opacity-50"><strong class="text-dark">Selamat Datang di Frebistor App</strong>
+                        <br> Sistem ini berguna untuk memprediksi penyakit yang diidap oleh pasien, khususnya untuk penyakit Tifus (TF) dan Demam Berdarah (DHF).
+                    </p>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row menu-app">
+                <div class="col-lg-5 col-md-4 col-sm-12 text-lg-end">
+                    <a id="pred" href="/prediksi">Prediksi Penyakit</a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-12 py-sm-4 py-md-0  text-lg-center">
+                    <a id="riwayat" href="/riwayat">Riwayat Prediksi</a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 text-lg-start">
+                    <a id="about" href="#tentang">Tentang Frebistor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tentang" class="container mx-auto mt-5 mb-3 p-5" style="height:500px">
+        <p><strong class="fs-3 py-0">About</strong> <br> About Frebristor App</p>
+    </div>
+    <footer>
+        <div class="mt-5 pt-3 pb-2 text-center bg-secondary bg-opacity-10">
+            <p>Copyright © 2022 Frebistor App - All Right Reserved</p>
+        </div>
+    </footer>
+    </div>
+
+</body>
+{% endblock %}

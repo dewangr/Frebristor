@@ -1,0 +1,50 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.css')}}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+
+<body>
+
+    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-white ">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='img/diamond.png') }}" width="30" height="30"> Frebristor
+            </a>
+            <button class="navbar-toggler bg-dark bg-opacity-10" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 user-select-none" aria-current="page" href="/">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-light mx-2 user-select-none" href="/prediksi">Prediksi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-light mx-2 user-select-none" href="/riwayat">Riwayat</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ url_for('static', filename='img/account.png') }}" width="25" height="25" alt="">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item disabled" disabled>Username Acc</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content%} {%endblock%}
+
+    <script src="{{url_for('static', filename='bootstrap/js/bootstrap.js')}}"></script>
+</body>
