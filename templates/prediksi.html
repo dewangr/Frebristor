@@ -1,18 +1,19 @@
-{% extends 'navbar.html' %}
-{% block content %}
+{% extends 'navbar.html' %} {% block content %}
+
 <head>
 
     <title>Prediksi Penyakit</title>
 </head>
+
 <body style="background-image: url({{ url_for('static', filename='img/bg.jpg') }}); background-size:cover; background-position:center; height: 850px">
     <div class="container container-lg ">
         <div class="main-content mx-auto w-75 p-3">
-            <h5 class="text-center pt-lg-5 pt-md-4 pt-sm-4">Prediksi Penyakit Pasien</h5>
-            <form action="prediksiPx/" method="post">
-                <a class="ms-4 pxKlik" data-bs-toggle="collapse" href="#collapseidentitas" role="button" aria-expanded="true" aria-controls="collapseidentitas">
+            <h5 class="text-center pt-lg-5 pt-md-4 pt-sm-4 mb-2">Prediksi Penyakit Pasien</h5>
+            <form action="" method="POST">
+                <a style="text-decoration:none" class="pxKlik ms-4 link-dark" data-bs-toggle="collapse" href="#collapseidentitas" role="button" aria-expanded="true" aria-controls="collapseidentitas">
                     <h6>Identitas Pasien:</h6>
                 </a>
-                <div class="show collapse ps-4 py-4 ms-3 identitas bg-white" id="collapseidentitas">
+                <div class="show collapse ps-4 py-4 ms-3 identitas bg-white  mb-4" id="collapseidentitas">
                     <div class="row ">
                         <div class="col-lg-6">
                             <div class="row mb-md-2 mb-sm-3 mb-lg-0">
@@ -36,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="ms-4 pxKlik" data-bs-toggle="collapse" href="#collapsegejala" role="button" aria-expanded="true" aria-controls="collapsegejala">
+                <a style="text-decoration:none" class="ms-4 link-dark" data-bs-toggle="collapse" href="#collapsegejala" role="button" aria-expanded="true" aria-controls="collapsegejala">
                     <h6>Gejala Pasien:</h6>
                 </a>
                 <div class="show collapse ps-4 py-3 ms-3 gejala-px bg-white" id="collapsegejala">
@@ -62,7 +63,7 @@
                                 </div>
                                 <div class="col-lg-7 col-sm-11 col-md-7">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Suhu Tubuh" aria-describedby="basic-addon" class="form-control" maxlength="2" name="suhu" id="suhu">
+                                        <input type="text" placeholder="Suhu Tubuh" aria-describedby="basic-addon" class="form-control" maxlength="4" name="suhu" id="suhu">
                                         <span class="input-group-text" id="basic-addon">celcius</span>
                                     </div>
                                 </div>
@@ -78,16 +79,16 @@
                                     <label class="mt-2 form-label" for="kes">Kesadaran</label>
                                 </div>
                                 <div class="col-lg-7 col-sm-11 col-md-7  float-end">
-                                    <select id="kes" class="form-select " aria-label="Default select example">
+                                    <select name="kes" id="kes" class="form-select " aria-label="Default select example">
                                         <option value="">Pilih tingkat kesadaran:</option>
-                                        <option value="cm">Compos Metris</option>
-                                        <option value="apatis">Apatis</option>
-                                        <option value="delirium">Delirium</option>
-                                        <option value="somnolen">Somnolen</option>
-                                        <option value="sopor">Soporous</option>
-                                        <option value="psikosi">Psikosis</option>
-                                        <option value="semi-koma">Semi Koma</option>
-                                        <option value="koma">Koma</option>
+                                        <option value="CM">Compos Metris</option>
+                                        <option value="Apatis">Apatis</option>
+                                        <option value="Delirium">Delirium</option>
+                                        <option value="Somnolen">Somnolen</option>
+                                        <option value="Sopor">Soporous</option>
+                                        <option value="Psikosi">Psikosis</option>
+                                        <option value="Semikoma">Semi Koma</option>
+                                        <option value="Koma">Koma</option>
                                     </select>
                                 </div>
                             </div>
@@ -120,11 +121,11 @@
                                 </div>
                                 <div class="pt-md-3 pt-lg-2 pt-sm-1 col-lg-7 col-sm-12 col-md-8  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioMaMi" id="radioYa" value="1">
+                                        <input class="form-check-input" type="radio" name="radioMaMi" id="radioYa" value="Baik">
                                         <label class="form-check-label" for="radioYa">Baik</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-2">
-                                        <input class="form-check-input" type="radio" name="radioMaMi" id="ra    dioTidak" value="0">
+                                        <input class="form-check-input" type="radio" name="radioMaMi" id="radioTidak" value="Turun">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -310,11 +311,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioBatuk" id="radioYa" value="1">
+                                        <input class="form-check-input" type="radio" name="radioMimisan" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioBatuk" id="radioTidak" value="0">
+                                        <input class="form-check-input" type="radio" name="radioMimisan" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -323,7 +324,7 @@
                         <div class="col-lg-6 col-md-auto">
                             <div class="row">
                                 <div class="col-lg-4 col-sm-12 col-md-3 ">
-                                    <label class="mt-2 form-label" for="radioNRetro">N Retro Orbital</label>
+                                    <label class="mt-2 form-label" for="radioNRetro">Nyeri Retro Orbital</label>
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-6 col-sm-12 col-md-9">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
@@ -369,7 +370,7 @@
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNRuam" id="radioTidak" value="0">
+                                        <input class="form-check-input" type="radio" name="radioRuam" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>

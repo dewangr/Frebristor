@@ -1,0 +1,48 @@
+{% extends 'navbar.html' %} {% block content %}
+
+<head>
+    <title>Riwayat Prediksi</title>
+</head>
+
+<body style="background-image:url({{ url_for('static', filename='img/bg.jpg') }}); background-size:cover; background-position:center;">
+    <div class="riwayat container-fluid pt-4">
+        <div class="main-content container mx-auto p-5">
+            <h5 class="text-center pb-3">Riwayat Hasil Prediksi</h5>
+            <div class="container bg-white py-3 px-5 shadow rounded-3">
+                <table class="table table-striped">
+                    <thead class="text-center">
+                        <tr>
+                            <th>No. RM</th>
+                            <th>Tgl Lahir</th>
+                            <th>Gejala Penyakit</th>
+                            <th>Hasil Prediksi</th>
+                            <th>Waktu Periksa</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    {%for row in riwayat : %}
+                    <tr>
+                        <td class="text-center">{{ row[2] }}</td>
+                        <td class="text-center">{{ row[3] }} </td>
+                        <td>Demam {{row[4]}} hari, Nafsu makan {{row[7]}}, {{row[-2]}} </td>
+                        <td class="text-center fw-bold">{{ row[-1] }}</td>
+                        <td>{{row[1]}}</td>
+                        <td class="text-center">
+                            <a href="" class="link-dark opacity-75"><span class="material-icons">
+                                info
+                                </span></a>
+                            <a href="" class="link-danger opacity-75"><span class="material-icons">
+                                delete
+                                </span></a></td>
+                    </tr>
+                    <!-- no = no+1 -->
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
