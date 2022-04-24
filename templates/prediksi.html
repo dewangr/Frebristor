@@ -46,11 +46,11 @@
                         <div class="col-lg-6">
                             <div class="row mb-md-2 mb-sm-2 mb-lg-0">
                                 <div class="col-lg-4 col-sm-12 col-md-4">
-                                    <label class="mt-2 form-label" for="demam">Demam</label>
+                                    <label required class="mt-2 form-label" for="demam">Demam</label>
                                 </div>
                                 <div class="col-lg-7 col-sm-11 col-md-7">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Lama Demam" aria-describedby="basic-addon2" class="form-control" maxlength="2" name="demam" id="demam">
+                                        <input required type="text" placeholder="Lama Demam" aria-describedby="basic-addon2" class="form-control" maxlength="2" name="demam" id="demam">
                                         <span class="input-group-text" id="basic-addon2">hari</span>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-lg-7 col-sm-11 col-md-7">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Suhu Tubuh" aria-describedby="basic-addon" class="form-control" maxlength="4" name="suhu" id="suhu">
+                                        <input required type="text" placeholder="Suhu Tubuh" aria-describedby="basic-addon" class="form-control" maxlength="4" name="suhu" id="suhu">
                                         <span class="input-group-text" id="basic-addon">celcius</span>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                     <label class="mt-2 form-label" for="kes">Kesadaran</label>
                                 </div>
                                 <div class="col-lg-7 col-sm-11 col-md-7  float-end">
-                                    <select name="kes" id="kes" class="form-select " aria-label="Default select example">
+                                    <select required name="kes" id="kes" class="form-select " aria-label="Default select example">
                                         <option value="">Pilih tingkat kesadaran:</option>
                                         <option value="CM">Compos Metris</option>
                                         <option value="Apatis">Apatis</option>
@@ -100,11 +100,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-8">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioSembelit" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioSembelit" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioSembelit" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioSembelit" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -121,11 +121,11 @@
                                 </div>
                                 <div class="pt-md-3 pt-lg-2 pt-sm-1 col-lg-7 col-sm-12 col-md-8  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioMaMi" id="radioYa" value="Baik">
+                                        <input required class="form-check-input" type="radio" name="radioMaMi" id="radioYa" value="baik">
                                         <label class="form-check-label" for="radioYa">Baik</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-2">
-                                        <input class="form-check-input" type="radio" name="radioMaMi" id="radioTidak" value="Turun">
+                                        <input required class="form-check-input" type="radio" name="radioMaMi" id="radioTidak" value="turun">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -138,11 +138,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioDiare" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioDiare" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioDiare" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioDiare" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -159,11 +159,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioPusing" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioPusing" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioPusing" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioPusing" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -176,11 +176,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioKembung" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioKembung" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioKembung" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioKembung" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -197,11 +197,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioMual" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioMual" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioMual" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioMual" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -214,11 +214,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNKepala" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioNKepala" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNKepala" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioNKepala" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -235,11 +235,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioMuntah" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioMuntah" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioMuntah" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioMuntah" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -252,11 +252,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNOtot" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioNOtot" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNOtot" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioNOtot" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -273,11 +273,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioBatuk" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioBatuk" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioBatuk" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioBatuk" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -290,11 +290,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNSendi" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioNSendi" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNSendi" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioNSendi" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -311,11 +311,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioMimisan" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioMimisan" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioMimisan" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioMimisan" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -324,15 +324,15 @@
                         <div class="col-lg-6 col-md-auto">
                             <div class="row">
                                 <div class="col-lg-4 col-sm-12 col-md-3 ">
-                                    <label class="mt-2 form-label" for="radioNRetro">Nyeri Retro Orbital</label>
+                                    <label class="mt-2 form-label" for="radioNRetro">Ruam Kulit</label>
                                 </div>
-                                <div class="pt-md-2 pt-sm-1 col-lg-6 col-sm-12 col-md-9">
+                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNRetro" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioRuam" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioNRetro" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioRuam" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -349,11 +349,11 @@
                                 </div>
                                 <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9  ">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioLidah" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioLidah" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioLidah" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioLidah" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>
@@ -362,15 +362,15 @@
                         <div class="col-lg-6 col-md-auto">
                             <div class="row">
                                 <div class="col-lg-4 col-sm-12 col-md-3 ">
-                                    <label class="mt-2 form-label" for="radioNRetro">Ruam Kulit</label>
+                                    <label class="mt-2 form-label" for="radioNRetro">Manifestasi Pendarahan</label>
                                 </div>
-                                <div class="pt-md-2 pt-sm-1 col-lg-7 col-sm-12 col-md-9">
+                                <div class="pt-md-2 pt-sm-1 col-lg-6 col-sm-12 col-md-9">
                                     <div class="form-check form-check-inline ms-lg-2 ms-sm-3 me-sm-2 me-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioRuam" id="radioYa" value="1">
+                                        <input required class="form-check-input" type="radio" name="radioNRetro" id="radioYa" value="1">
                                         <label class="form-check-label" for="radioYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline ms-md-0 ms-sm-0 ms-lg-4">
-                                        <input class="form-check-input" type="radio" name="radioRuam" id="radioTidak" value="0">
+                                        <input required class="form-check-input" type="radio" name="radioNRetro" id="radioTidak" value="0">
                                         <label class="form-check-label" for="radioTidak">Tidak</label>
                                     </div>
                                 </div>

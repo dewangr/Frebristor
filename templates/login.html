@@ -10,23 +10,29 @@
     <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.css')}}">
     <title>Login - Frebristor</title>
 </head>
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category,message in messages %}
+<div class="container alert alert-{{category}} alert-dismissible fade show" role="alert">
+    <p class="pt-2">{{message}}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %} {% endif %} {% endwith %}
 
-<body class="bg-light">
+<body class="bg-light" style="height: fit-content;">
     <div class="main-content container">
         <p class="pt-5 text-center fs-3 fw-bold text-warning">frebristor app</p>
-        <div class="login-card shadow mx-auto bg-white pt-1 pb-5 px-5" style="  width: 370px;">
+        <div class="login-card shadow mx-auto bg-white pt-1 pb-5 px-5" style=" width: 370px;">
             <form action="" method="post">
                 <h2 class="pt-4 pb-2 text-center">Login</h2>
                 <div class="row">
                     <div class="form-floating mt-1 mb-2">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput" class="px-4">Username</label>
+                        <input required type="text" class="form-control" id="username" placeholder="Username" name="username">
+                        <label for="username" class="px-4">Username</label>
                     </div>
                 </div>
                 <div class="row justify-content-center ">
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword" class="px-4">Password</label>
+                        <input required type="password" class="form-control" id="password" placeholder="Password" name="password">
+                        <label for="password" class="px-4">Password</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-warning justify-content-center w-100 my-3 py-2">Login</button>

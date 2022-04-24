@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.css')}}">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <link href='https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <h5 class="navbar-brand ps-3" href="#"><strong class="text-warning">Frebristor</strong> App</h5>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            </div>
+        </form>
+        <!-- Navbar-->
+        <li><a class="text-light opacity-75 text-decoration-none ms-md-0 me-3 me-lg-4 fw-light" role="button" href="/admin/logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a></li>
+
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Menu</div>
+                        <a class="nav-link" href="/admin">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-book-medical"></i></div>
+                            Riwayat Prediksi
+                        </a>
+                        <a class="nav-link" href="/admin/petugas">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Daftar Petugas
+                        </a>
+                        <a class="nav-link" href="/admin/petugas/tambah">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>
+                            Tambah Petugas
+                        </a>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div>Logged in as:</div>
+                    {{session["nama"]}}
+                </div>
+            </nav>
+        </div>
+        {% block content %} {% endblock %}
+        <footer class="py-4 bg-light mt-2 d-block" style="bottom: 0; right:0; left:0; position:absolute">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-center small">
+                    <div class="text-muted">Copyright &copy; Frebristor 2022</div>
+                    <!-- <div>
+                        <span class="text-muted">I Dewa Ngurah Tri Hendrawan &middot;</span>
+                        <span class="text-muted">1808561069</span>
+                    </div> -->
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="{{url_for('static', filename='/bootstrap/js/bootstrap.js')}}"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script> -->
+    <!-- <script src="{{url_for('static', filename='/bootstrap/js/scripts.js')}}"></script> -->
+    <!-- <script src="{{url_for('static', filename='/bootstrap/js/js/datatables-simple-demo.js')}}"></script> -->
+</body>
+
+</html>
+
+
+</html>

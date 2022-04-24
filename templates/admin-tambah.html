@@ -1,0 +1,63 @@
+{% extends "admin-nav.html" %} {% block content %}
+
+<head>
+    <title>Admin - Tambah Petugas</title>
+</head>
+<div id="layoutSidenav_content">
+    <main>
+        <main class="container-fluid px-4">
+            <h2 class="mt-4">Tambah Petugas</h2>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item">Petugas</li>
+                <li class="breadcrumb-item active">Tambah Petugas</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fa-solid fa-square-plus"></i> Menambahkan Petugas Baru
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 mb-3">
+                                    <label for="fullname" class="form-label">Username</label>
+                                    <input required type="text" name="username" class="form-control" id="username" placeholder="Masukkan username Anda">
+                                </div>
+                                <div class="col-lg-6 col-md-12 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
+                                    <input required type="text" class="form-control" id="fullname" name="fullname" placeholder="Masukkan nama lengkap Anda">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 mb-3">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="password" class="form-label">Kata Sandi</label>
+                                            <input required type="password" id="password" name="password" class="form-control" placeholder="Kata sandi terdiri dari 8 karakter">
+                                        </div>
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="confirm" class="form-label">Konfirmasi Kata Sandi</label>
+                                            <input required type="password" name="confirm" id="confirm" class="form-control" placeholder="tanpa spesial karakter dan emotikon.">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 mb-3">
+                                    <label for="" class="form-label" id="roleForm">Role</label>
+                                    <select required class="form-select" name="roleForm" id="roleForm">
+                                        <option class="muted-text" value="">Pilih role </option>
+                                        <option value="petugas">Petugas</option>
+                                        <option value="admin">Administrator</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-end">
+                            <button type="submit" class="btn btn-sm btn-dark">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        {% endblock %}
+</div>

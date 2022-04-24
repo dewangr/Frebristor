@@ -3,6 +3,13 @@
 <head>
     <title>Riwayat Prediksi</title>
 </head>
+<!-- {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+<div class="container fixed-top alert alert-{{category}} alert-dismissible fade show" role="alert">
+    <p class="pt-2">{{message}}</p>
+    <a href="/hapus?id={{id}}?confirm='confirmed'">Hapus</a>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %} {% endif %} {% endwith %} -->
 
 <body style="background-image:url({{ url_for('static', filename='img/bg.jpg') }}); background-size:cover; background-position:center;">
     <div class="riwayat container-fluid pt-4">
@@ -14,27 +21,23 @@
                         <tr>
                             <th>No. RM</th>
                             <th>Tgl Lahir</th>
+                            <th>Waktu Periksa</th>
                             <th>Gejala Penyakit</th>
                             <th>Hasil Prediksi</th>
-                            <th>Waktu Periksa</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
                     {%for row in riwayat : %}
                     <tr>
                         <td class="text-center">{{ row[2] }}</td>
                         <td class="text-center">{{ row[3] }} </td>
+                        <td>{{row[1]}}</td>
                         <td>Demam {{row[4]}} hari, Nafsu makan {{row[7]}}, {{row[-2]}} </td>
                         <td class="text-center fw-bold">{{ row[-1] }}</td>
-                        <td>{{row[1]}}</td>
                         <td class="text-center">
-                            <a href="" class="link-dark opacity-75"><span class="material-icons">
-                                info
-                                </span></a>
-                            <a href="" class="link-danger opacity-75"><span class="material-icons">
-                                delete
-                                </span></a></td>
+                            <a href="/hasilprediksi?id={{row[0]}}" class="link-dark opacity-75"><i class="fa-solid fa-circle-info"></i></a>
+                            <!-- <a href="/hapus?id={{row[0]}}" class="link-danger opacity-75"><i class="fa-solid fa-trash"></i></a></td> -->
                     </tr>
                     <!-- no = no+1 -->
                     {% endfor %}
