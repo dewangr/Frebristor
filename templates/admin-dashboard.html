@@ -29,30 +29,43 @@
                             <tr>
                                 <th>No. RM</th>
                                 <th>Tgl Lahir</th>
+                                <th>Pemeriksa</th>
                                 <th>Waktu Periksa</th>
                                 <th>Gejala Penyakit</th>
                                 <th>Hasil Prediksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {%for row in riwayat : %}
-                        <tr>
-                            <td class="text-center">{{ row[2] }}</td>
-                            <td class="text-center">{{ row[3] }} </td>
-                            <td>{{row[1]}}</td>
-                            <td>Demam {{row[4]}} hari, Nafsu makan {{row[7]}}, {{row[-2]}} </td>
-                            <td class="text-center fw-bold">{{ row[-1] }}</td>
-                        {% endfor %}
+                            {%for row in riwayat : %}
+                            <tr>
+                                <td class="text-center">{{ row[1] }}</td>
+                                <td class="text-center">{{ row[3] }} </td>
+                                <td class="text-center">{{ row[2] }}</td>
+                                <td>{{row[4]}}</td>
+                                <td>Demam {{row[5]}} hari, Nafsu makan {{row[8]}}, {{row[-2]}} </td>
+                                <td class="text-center fw-bold">{{ row[-1] }}</td>
+                                {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </main>
+    <footer class="py-4 bg-light mt-4 bottom-0" style="right:0; left:0;">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-center small">
+                <div class="text-muted">Copyright &copy; Frebristor 2022</div>
+                <!-- <div>
+                    <span class="text-muted">I Dewa Ngurah Tri Hendrawan &middot;</span>
+                    <span class="text-muted">1808561069</span>
+                </div> -->
+            </div>
+        </div>
+    </footer>
     {% endblock %}
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script> -->
 
-</html>
+    </html>

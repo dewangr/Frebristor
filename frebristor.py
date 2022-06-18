@@ -1,3 +1,4 @@
+from posixpath import split
 from urllib import response
 from wsgiref.util import request_uri
 from flask import Flask, redirect, request, session, render_template, url_for, flash
@@ -11,33 +12,28 @@ from numpy import asarray
 from pandas import DataFrame
 from scipy.spatial import distance
 import random
-import mysql.connector
-from mysql.connector import cursor
 from datetime import datetime
-# import scipy
-# import sklearn
-# import seaborn as sns
-# import matplotlib
+from flask_mysqldb import MySQL 
+import time
 
 frebristor = Flask(__name__)
 frebristor.config["SECRET_KEY"] = "skripsiSecret"
+
+frebristor.config["MYSQL_HOST"] = 'eu-cdbr-west-02.cleardb.net'
+frebristor.config["MYSQL_USER"] = 'bcd3d4d0aa33a1' 
+frebristor.config["MYSQL_PASSWORD"] = '45272d75'
+frebristor.config["MYSQL_DB"] = 'heroku_db868990dc656ce'
+
+sql = MySQL(frebristor)
 
 frebristorApi= Api(frebristor)
 
 CORS (frebristor) 
 
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="",
-    database="frebristor",
-)
-mycursor = mydb.cursor()
-
 class OlahData(Resource):
     def loaddata():
         df = pd.read_csv('data.csv', delimiter=";")
-        df = df.drop(['No RM'], axis=1)
+        df = df.drop(['no'], axis=1)
         return df
     
     def kolom_object(df):
@@ -85,8 +81,6 @@ class PseudoNN(Resource):
     def separate_class(dataset,value):
         t = dataset.copy()
         t = t[t['diag'] == value]
-        # print("separate "+str(value))
-        # print(t)
         t.pop('diag')
         return t
 
@@ -95,20 +89,14 @@ class PseudoNN(Resource):
         distances = []
         for i in range(0,len(train)):
             train_row = train.iloc[i][:]
-            train_row, test_row = asarray(train_row), asarray(test_row)
-            train_row, test_row = train_row.reshape(-1,1), test_row.reshape(-1,1)
+            train_row, test_row = asarray(train_row), asarray(test_row) 
+            train_row, test_row = train_row.reshape(-1,1), test_row.reshape(-1,1) 
             dist = distance.euclidean(test_row, train_row)
             distances.append(dist)
             row_distances.append((train_row, dist))
         distances = asarray(distances)
         distances.sort()
         neighbours = np.zeros(num_neighbours)
-        # print("neighbour "+str(value))
-        # print(train)
-        # print("distances")
-        # print(distances)
-        # print("neighbours")
-        # print(neighbours)
         for i in range(0,num_neighbours):
             neighbours[i] = distances[i]
         return neighbours
@@ -123,8 +111,8 @@ class PseudoNN(Resource):
     def predict_classification(train, test_row ):
         Xt = PseudoNN.separate_class(train,0)
         Xy = PseudoNN.separate_class(train,1)
-        yNeighbours = PseudoNN.get_neighbours(Xy, test_row, 7)
-        tNeighbours = PseudoNN.get_neighbours(Xt, test_row, 7)
+        yNeighbours = PseudoNN.get_neighbours(Xy, test_row, 8)
+        tNeighbours = PseudoNN.get_neighbours(Xt, test_row, 8)
         sumY = PseudoNN.sum_neighbours(yNeighbours)
         sumT = PseudoNN.sum_neighbours(tNeighbours)
         if sumY < sumT:
@@ -184,12 +172,13 @@ def index():
 
 @frebristor.route("/prediksi", methods=["POST", "GET"])
 def prediksi():
+    mycursor = sql.connection.cursor()
     if "name" in session:
         if request.method == "POST":
             noRM = request.form['rm']
             lahir = request.form['lahir']
             lamaDemam = request.form['demam']
-            suhuTubuh = request.form['suhu']
+            suhu = request.form['suhu']
             kesadaran = request.form['kes']
             sembelit = request.form['radioSembelit']
             nafsuMakan = request.form['radioMaMi']
@@ -203,77 +192,96 @@ def prediksi():
             batuk = request.form['radioBatuk']
             nyeriSendi = request.form['radioNSendi']
             mimisan = request.form['radioMimisan']
-            nyeriRetroOrbital = request.form['radioNRetro']
+            pendarahan = request.form['radioPendarahan']
             lidahKotor = request.form['radioLidah']
             ruamKulit = request.form['radioRuam']
-            now = datetime.now()
-            tglPeriksa = now.strftime('%Y-%m-%d %H:%M:%S')  
+            
+            now = time.localtime() # get struct_time
+            tglPeriksa = time.strftime("%Y-%m-%d %H:%M:%S", now) 
+            
+            if ',' in suhu:
+                suhu = str(suhu)
+                temp = suhu.split(",")
+                suhuTubuh = int(temp[0]) + int(temp[1])/10
+            else:
+                suhuTubuh = suhu
             
             gejala = np.array([
                 [lamaDemam, suhuTubuh, kesadaran, nafsuMakan, pusing, mual, muntah, batuk, sembelit, diare, perutKembung, 
-                mimisan, nyeriKepala, nyeriOtot, nyeriSendi, nyeriRetroOrbital, ruamKulit, lidahKotor, 0, 0]     
+                mimisan, nyeriKepala, nyeriOtot, nyeriSendi, pendarahan, ruamKulit, lidahKotor, 0, 0]     
             ])
             
             df = OlahData.loaddata()
             name_col = OlahData.nama_kolom(df)
-            object_col = OlahData.kolom_object(df)
-            
             pxtodb = DataFrame(gejala)
             pxtodb.columns = name_col
-            # px = asarray(gejala)
-            # px = px.reshape(20,1)
-            # name_col = asarray(name_col)
-            # pasien = DataFrame(gejala, columns=[name_col])
-            # df = df.append(pasien)
-            data = np.vstack((df, gejala))
-            data = DataFrame(data)
-            data.columns = name_col
+            print(pxtodb)
+            # data = np.vstack((df, gejala))
+            # data = DataFrame(data)
+            # data.columns = name_col
             
-            dataset = OlahData.labelendcoder(data, object_col)
-            # dataset = OlahData.normalisasi(dff)
-            df.info()
-            df.nunique()
-            # print("df")
-            # print(df)
-            # print(object_col)
-            # print("label")
-            # print(dataset)
-            
-            gejalaPx = dataset.tail(1)
+            # gejalaPx = data.tail(1)
+            # dataset = data.drop(data.tail(1).index)
+            dhf, tf = OlahData.setdataset(df)
+            gejalaPx = pxtodb.copy()
             gejalaPx.pop('TF')
             gejalaPx.pop('DHF')
-            dataset = dataset.drop(dataset.tail(1).index)
-            dhf, tf = OlahData.setdataset(dataset)
-            # print("tf")
-            # print(tf)
-            # print("dhf")
-            # print(dhf)
+
+            kolom = OlahData.nama_kolom(gejalaPx)
+            for col in kolom:
+                if col == 'Suhu':
+                    gejalaPx["Suhu"] = gejalaPx["Suhu"].astype("float")
+                else:
+                    gejalaPx[col] = gejalaPx[col].astype("int")
             
             pred_tf = PseudoNN.predict_classification(tf, gejalaPx)
             pred_dhf = PseudoNN.predict_classification(dhf, gejalaPx)
             prediksi = AksiDatabase.hasilprediksi(pred_tf, pred_dhf)
             gejalanya = AksiDatabase.daftargejala(pxtodb)
             
-            val = (tglPeriksa, noRM, lahir, lamaDemam, suhuTubuh, kesadaran, nafsuMakan, pusing, mual, muntah, batuk, sembelit, diare, perutKembung, 
-                mimisan, nyeriKepala, nyeriOtot, nyeriSendi, nyeriRetroOrbital, ruamKulit, lidahKotor, pred_tf, pred_dhf,(", ").join(gejalanya),prediksi)
-            # sql = "INSERT INTO riwayat(tglPeriksa, RM, ttl, lama_demam, suhu, kes, nafsu_makan, pusing, mual, muntah, batuk, sembelit, diare, perut_kembung, mimisan, nyeri_kepala, nyeri_otot,nyeri_sendi, nyeri_retro_orbital, ruam_kulit, lidah_kotor, dhf, tf) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" %val
+            if nafsuMakan == '1':
+                mami = 'turun'
+            else:
+                mami = 'baik'
+            
+            if kesadaran == '1':
+                kes = 'cm'
+            elif kesadaran == '0':
+                kes = 'apatis'
+            elif kesadaran == '2':
+                kes = 'delirium'
+            elif kesadaran == '3':
+                kes = 'koma'
+            elif kesadaran == '4':
+                kes = 'psikosis'
+            elif kesadaran == '5':
+                kes = 'semi koma'
+            elif kesadaran == '6':
+                kes = 'somnolen'
+            elif kesadaran == '7':
+                kes = 'sopor'
+            
+            # val = (tglPeriksa, noRM, lahir, lamaDemam, suhuTubuh, kes, mami, pusing, mual, muntah, batuk, sembelit, diare, perutKembung, 
+            #     mimisan, nyeriKepala, nyeriOtot, nyeriSendi, pendarahan, ruamKulit, lidahKotor, pred_tf, pred_dhf,(", ").join(gejalanya),prediksi, session["name"])
+            val = (noRM, lahir, tglPeriksa, lamaDemam, suhuTubuh, kes, mami,  (", ").join(gejalanya),prediksi, session["name"])
             mycursor.execute("""
                 INSERT INTO 
-                    riwayat_detail(tglPeriksa, no_RM, ttl, lama_demam, suhu, kes, nafsu_makan, pusing, mual, muntah, batuk, sembelit, diare, perut_kembung, mimisan, nyeri_kepala, nyeri_otot,nyeri_sendi, nyeri_retro_orbital, ruam_kulit, lidah_kotor, tf, dhf, gejala, prediksi) 
+                    riwayat(no_RM, ttl, tglPeriksa, lama_demam, suhu, kes, nafsu_makan, gejala, prediksi, petugas) 
                 VALUES 
-                    (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+                    (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
                     , val)
-            mydb.commit()
+            # mycursor.execute("""
+            #     INSERT INTO 
+            #         riwayat_detail(tglPeriksa, no_RM, ttl, lama_demam, suhu, kes, nafsu_makan, pusing, mual, muntah, batuk, sembelit, diare, perut_kembung, mimisan, nyeri_kepala, nyeri_otot,nyeri_sendi, manifestasi_pendarahan, ruam_kulit, lidah_kotor, tf, dhf, gejala, prediksi, petugas) 
+            #     VALUES 
+            #         (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s)"""
+            #         , val)
+            sql.connection.commit()
 
-            mycursor.execute("SELECT * FROM riwayat_detail")
+            mycursor.execute("SELECT * FROM riwayat")
             res = mycursor.fetchall()
             lastrow = res[-1][:]
             id = lastrow[0]
-            
-            # sql = "UPDATE `riwayat` SET `gejala`="+(", ").join(gejalanya)+",`prediksi`="+prediksi+" WHERE `id_detail` ="+id+" "
-            # mycursor.execute(sql)
-            # mydb.commit()
-            
             return redirect(url_for('predPx',id=id))
         else:
             return render_template('prediksi.html')
@@ -282,8 +290,9 @@ def prediksi():
 
 @frebristor.route("/riwayat")
 def riwayat():
+    mycursor = sql.connection.cursor()
     if "name" in session:
-        mycursor.execute("SELECT * FROM riwayat_detail") 
+        mycursor.execute("SELECT * FROM riwayat ORDER BY tglPeriksa DESC") 
         res = mycursor.fetchall()
         return render_template("riwayat.html", riwayat=res)
     else:
@@ -299,6 +308,7 @@ def logout():
 
 @frebristor.route("/login", methods=["GET", "POST"])
 def login():
+    mycursor = sql.connection.cursor()
     if "name" in session:
         return redirect(url_for('index'))
     else:
@@ -310,24 +320,24 @@ def login():
             res = mycursor.fetchall()
             for row in res:
                 if uname == row[0]:
-                    if row[1] == pword  and row[2] == role:
-                        name = row[3]
+                    if row[1] == pword  and row[3] == role:
+                        name = row[2]
                         session['name'] = name
                         return redirect(url_for('index') )
                     else:
                         flash('Password yang Anda masukkan salah. Silahkan masukkan ulang password!', 'danger')
                         return render_template("login.html")
-                else:
-                    flash('Username yang Anda masukkan tidak terdaftar.', 'warning')
-                    return render_template("login.html")
+            flash('Username yang Anda masukkan tidak terdaftar.', 'warning')
+            return render_template("login.html")
         return render_template("login.html")
 
 
 @frebristor.route("/hasilprediksi")
 def predPx():
+    mycursor = sql.connection.cursor()
     if "name" in session:
         id = request.args.get("id")
-        mycursor.execute("select * from riwayat_detail where id_detail = " +id+"")
+        mycursor.execute("select * from riwayat where id_riwayat = " +id+"")
         res = mycursor.fetchall()
 
         currentDate = datetime.today().date()
@@ -347,7 +357,7 @@ def predPx():
         elif dateVeri < 0 and monthVeri == 0:
             age = age-1
         
-        waktu, gejala  = str(res[0][1]), str(res[0][-2])
+        waktu, gejala  = str(res[0][4]), str(res[0][-2])
         waktu = waktu.split()
         if len(gejala) != 0:
             gejala = gejala.split(",")
@@ -364,26 +374,11 @@ def kembali():
     else:
         return redirect(url_for('index'))
     
-# @frebristor.route('/hapus')
-# def hapus():
-#     if "name" in session:
-#         id = request.args.get("id")
-#         confirm = request.args.get("confirm")
-#         if confirm == 'confirmed':
-#             mycursor.execute("DELETE FROM `riwayat_detail` WHERE `id_detail` = " +id+"")
-#             mydb.commit()
-#             return redirect(url_for('riwayat'))
-#         else:
-#             norm = mycursor.execute("select RM from `riwayat_detail` WHERE `id_detail` = "+id+"")
-#             flash("Apakah Anda akan menghapus hasil prediksi pasien "+str(norm)+"?", 'warning')
-#             return redirect(url_for('riwayat'))
-#     else:
-#         return redirect(url_for('index'))
-
 # route admin =============================================================================================
     
 @frebristor.route("/admin/login", methods=["GET", "POST"])
 def loginadmin():
+    mycursor = sql.connection.cursor()
     if "role" in session:
         return redirect(url_for('dashboard'))
     else:
@@ -393,11 +388,10 @@ def loginadmin():
             role = "admin"
             mycursor.execute("select * from user where role = 'admin'")
             res = mycursor.fetchall()
-            # print("role: "+str(res))
             for row in res:
                 if user == row[0]:
-                    if row[1] == passw  and row[2] == role:
-                        name = row[3]
+                    if row[1] == passw  and row[3] == role:
+                        name = row[2]
                         session['nama'] = name
                         session['role'] = role
                         return redirect(url_for('dashboard') )
@@ -411,8 +405,9 @@ def loginadmin():
 
 @frebristor.route("/admin")
 def dashboard():
+    mycursor = sql.connection.cursor()
     if "role" in session:
-        mycursor.execute("SELECT * FROM riwayat_detail") 
+        mycursor.execute("SELECT * FROM riwayat ORDER BY tglPeriksa DESC") 
         res = mycursor.fetchall()
         return render_template("admin-dashboard.html", riwayat=res)
     else:
@@ -420,6 +415,7 @@ def dashboard():
 
 @frebristor.route('/admin/petugas/tambah', methods=["GET", "POST"])
 def tambah():
+    mycursor = sql.connection.cursor()
     if request.method == "POST":
         uname = request.form["username"]
         fullname = request.form["fullname"]
@@ -431,20 +427,21 @@ def tambah():
             flash('Password yang Anda masukkan berbeda', 'warning')
             return redirect(url_for('tambah'))
         else:
-            val = (uname, pword, role, fullname )
+            val = (uname, pword,fullname, role  )
             mycursor.execute("""
                             INSERT INTO 
-                                `user`(`username`, `password`, `role`, `nama`)
+                                `user`(`username`, `password`, `nama`, `role`)
                             VALUES 
-                                (%s, %s,%s,%s)
+                                (%s,%s,%s,%s)
                             
                             """, val)
-            mydb.commit()
+            sql.connection.commit()
             return redirect(url_for('petugas'))
     return render_template("admin-tambah.html")
     
 @frebristor.route('/admin/petugas',methods=["GET", "POST"])
 def petugas():
+    mycursor = sql.connection.cursor()
     mycursor.execute("SELECT * FROM user") 
     res = mycursor.fetchall()
     index = enumerate(res)
@@ -452,10 +449,11 @@ def petugas():
 
 @frebristor.route('/admin/petugas/hapus')
 def hapus():
+    mycursor = sql.connection.cursor()
     if "role" in session:
         username = request.args.get("uname")
-        mycursor.execute("DELETE FROM `user` WHERE `username` = " +username+"")
-        mydb.commit()
+        mycursor.execute("DELETE FROM `user` WHERE `username` = '"+username+"'")
+        sql.connection.commit()
         return redirect(url_for('petugas'))
     else:
         return redirect(url_for('dashboard'))

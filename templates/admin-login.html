@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.css')}}">
     <title>Login Admin</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/diamond.png') }}">
 </head>
 {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category,message in messages %}
 <div class="container alert alert-{{category}} alert-dismissible fade show" role="alert">
@@ -20,7 +21,7 @@
 
 <body class="bg-light" style="height: fit-content;">
     <div class="container">
-        <div class="row mx-auto my-5 w-25">
+        <div class="row mx-auto my-5" style="width:325px">
             <div class="login-panel panel panel-default text-secondary mt-5 bg-warning bg-opacity-10 px-4 py-4 rounded-3 shadow">
                 <div class="panel-heading">
                     <h4 class="panel-title my-3 text-center">Admin Sign In</h4>

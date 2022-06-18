@@ -12,7 +12,7 @@
                 <div class="row ps-2 my-3">
                     <div class="col-sm-5    ">
                         <div class="row">
-                            <td>No RM : {{hasil[0][2]}}</td>
+                            <td>No RM : {{hasil[0][1]}}</td>
                         </div>
                         <div class="row">
                             <td>Tgl Lahir : {{hasil[0][3]}}</td>
@@ -29,7 +29,7 @@
                             <td>Waktu Periksa : {{waktu[1]}}</td>
                         </div>
                         <div class="row">
-                            <td>Petugas : {{session["name"]}}</td>
+                            <td>Petugas : {{hasil[0][2]}}</td>
                         </div>
                     </div>
                 </div>
@@ -37,13 +37,13 @@
                     <h6>Gejala Pasien:</h6>
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-12">
-                            <li>Demam {{hasil[0][4]}} hr</li>
+                            <li>Demam {{hasil[0][5]}} hr</li>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12">
-                            <li>Ma/Mi {{hasil[0][7]}}</li>
+                            <li>Ma/Mi {{hasil[0][8]}}</li>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12">
-                            <li>Kes {{hasil[0][6]}}</li>
+                            <li>Kes {{hasil[0][7]}}</li>
                         </div>
                         {% if gejala !=0 %} {% for row in gejala %}
                         <div class="col-lg-4 col-md-6 col-sm-12">

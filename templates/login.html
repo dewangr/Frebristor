@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.css')}}">
     <title>Login - Frebristor</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/fever.png') }}">
 </head>
 {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category,message in messages %}
 <div class="container alert alert-{{category}} alert-dismissible fade show" role="alert">

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename='img/diamond.png') }}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.css')}}">
@@ -22,13 +23,11 @@
         <!-- Navbar Brand-->
         <h5 class="navbar-brand ps-3" href="#"><strong class="text-warning">Frebristor</strong> App</h5>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            </div>
-        </form>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 justify-content-end" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        </div>
         <!-- Navbar-->
-        <li><a class="text-light opacity-75 text-decoration-none ms-md-0 me-3 me-lg-4 fw-light" role="button" href="/admin/logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a></li>
+        <li><a class="text-light  opacity-75 text-decoration-none ms-md-0 me-3 me-lg-4 fw-light" role="button" href="/admin/logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a></li>
 
     </nav>
     <div id="layoutSidenav">
@@ -57,18 +56,26 @@
                 </div>
             </nav>
         </div>
+        <script>
+            window.addEventListener('DOMContentLoaded', event => {
+
+                // Toggle the side navigation
+                const sidebarToggle = document.body.querySelector('#sidebarToggle');
+                if (sidebarToggle) {
+                    // Uncomment Below to persist sidebar toggle between refreshes
+                    // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+                    //     document.body.classList.toggle('sb-sidenav-toggled');
+                    // }
+                    sidebarToggle.addEventListener('click', event => {
+                        event.preventDefault();
+                        document.body.classList.toggle('sb-sidenav-toggled');
+                        localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+                    });
+                }
+
+            });
+        </script>
         {% block content %} {% endblock %}
-        <footer class="py-4 bg-light mt-2 d-block" style="bottom: 0; right:0; left:0; position:absolute">
-            <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-center small">
-                    <div class="text-muted">Copyright &copy; Frebristor 2022</div>
-                    <!-- <div>
-                        <span class="text-muted">I Dewa Ngurah Tri Hendrawan &middot;</span>
-                        <span class="text-muted">1808561069</span>
-                    </div> -->
-                </div>
-            </div>
-        </footer>
     </div>
     <script src="{{url_for('static', filename='/bootstrap/js/bootstrap.js')}}"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script> -->

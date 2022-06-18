@@ -11,7 +11,7 @@
     <title>Admin - Petugas</title>
 </head>
 
-<div id="layoutSidenav_content">
+<div id="layoutSidenav_content" class="mb-4">
     <main>
         <div class="container-fluid px-4">
             <h2 class="mt-4">Daftar Petugas</h2>
@@ -46,10 +46,10 @@
                             <tr>
                                 <td>{{no+1}}</td>
                                 <td>{{ row[0] }} </td>
-                                <td>{{row[3]}}</td>
-                                <td>{{ row[2] }}</td>
+                                <td>{{row[2]}}</td>
+                                <td>{{ row[3] }}</td>
                                 <td class="text-center">
-                                    <a href="/hapus?uname={{row[0]}}" class="link-danger opacity-75"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="javascript:confirmDelete('{{ row[0] }}')" onclick="" class="link-danger opacity-75"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                                 {% endfor %}
                         </tbody>
@@ -58,6 +58,27 @@
             </div>
         </div>
     </main>
+    <footer class="py-4 bg-light mt-4 bottom-0" style="right:0; left:0;">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-center small">
+                <div class="text-muted">Copyright &copy; Frebristor 2022</div>
+                <!-- <div>
+                    <span class="text-muted">I Dewa Ngurah Tri Hendrawan &middot;</span>
+                    <span class="text-muted">1808561069</span>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+    <script>
+        var confirmDelete = (nama) => {
+            var pertanyaan = confirm("Apakah kamu yakin menghapus " + nama + "?");
+            if (pertanyaan) {
+                window.location = window.location.href + "/hapus?uname=" + nama
+            } else {
+                window.location = window.location.href + "#"
+            }
+        }
+    </script>
     {% endblock %}
     <!-- <script type="text/javascript" src="{{url_for('static',filename='jQuery-3.6.0/jquery-3.6.0.min.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static' ,filename='jQuery-1.12.4/jquery-1.12.4.min.js')}}"></script>
