@@ -10,5 +10,5 @@ password : petugas 1 ;
 
 Akun admin (frebristor.herokuapp.com/admin):
 
-username : admin ;
+username : admin1 ;
 password : admin123 ;
